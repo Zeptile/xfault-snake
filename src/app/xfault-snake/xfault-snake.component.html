@@ -1,0 +1,28 @@
+<div id="app">
+  <div class="header">
+    <div class="title">THE SNEK GAME</div>
+    <div class="scoring">Score: {{score}}</div>
+  </div>
+  <div class="game">
+    <div class="game-window" [style.width.px]="nodeWidth * gridSize" [style.height.px]="nodeWidth * gridSize">
+      <table *ngIf="!gameOver; else gameover">
+        <tbody>
+          <tr *ngFor="let row of grid">
+            <td *ngFor="let cell of row" [class.snake]="cell === 2"
+            [class.fruit]="cell === 3" [class.snakehead]="cell === 1"></td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #gameover>
+        <div class="gameover">GAME OVER</div>
+      </ng-template>
+    </div>
+    <div class="buttons-container">
+      <i (click)="init()" class="fas fa-redo-alt reset"></i>
+      <!-- <i class="fas fa-cogs"></i> -->
+    </div>
+  </div>
+  <div class="footer-debug">
+    <div class="coords">({{currentCoords.x}}, {{currentCoords.y}})</div>
+  </div>
+</div>
